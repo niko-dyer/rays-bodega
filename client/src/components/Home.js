@@ -16,7 +16,9 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import Background from '../assets/background.jpg'
+import Background from '../assets/images/BackgroundBodega.jpg'
+import Wood from '../assets/images/background.jpg'
+import Logo from '../assets/images/bodegalogowhite.png'
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -33,34 +35,14 @@ const getWidth = () => {
  */
 const HomepageHeading = ({ mobile }) => (
   <Container fluid>
-      <Header
-        as='h1'
-        content='Imagine-a-Company'
-        inverted
-        style={{
-          fontSize: mobile ? '2em' : '4em',
-          fontWeight: 'normal',
-          marginBottom: 0,
-          marginTop: mobile ? '1.5em' : '3em',
-          transform: mobile ? '' : 'translateY(-1.2em)'
-        }}
-      />
-      <Header
-        as='h2'
-        content='Do whatever you want when you want to.'
-        inverted
-        style={{
-          fontSize: mobile ? '1.5em' : '1.7em',
-          fontWeight: 'normal',
-          marginTop: mobile ? '0.5em' : '1.5em',
-          transform: mobile ? '' : 'translateY(-4em)'
-        }}
-        />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Image size='large' src={Logo} />
+    </div>
     <Link to='/works'>
-    <Button animated inverted size='huge'>
-      <Button.Content visible>Get Started</Button.Content>
-      <Button.Content hidden><Icon name='right arrow' /></Button.Content>
-    </Button>
+      <Button animated inverted size='huge'>
+        <Button.Content visible>Get Started</Button.Content>
+        <Button.Content hidden><Icon name='right arrow' /></Button.Content>
+      </Button>
     </Link>
   </Container>
 )
@@ -97,7 +79,7 @@ class DesktopContainer extends Component {
             vertical
             size='huge'
             style={{
-              backgroundImage: `url(http://altavistabali.com/images/home_mountain.jpg)`,
+              backgroundImage: `url(${Background})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover'
             }}
@@ -111,21 +93,21 @@ class DesktopContainer extends Component {
             >
               <Container>
                 <Link to='/'>
-                  <Menu.Item active>
+                  <Menu.Item active style={{color: 'black'}}>
                     Home
                     </Menu.Item>
                 </Link>
                 <Link to='/works'>
-                  <Menu.Item>Works</Menu.Item>
+                  <Menu.Item style={{color: 'black'}}>Works</Menu.Item>
                 </Link>
                 <Link to='/shoes'>
-                  <Menu.Item>Shoes</Menu.Item>
+                  <Menu.Item style={{color: 'black'}}>Shoes</Menu.Item>
                 </Link>
                 <Link to='/clothes'>
-                  <Menu.Item>Clothes</Menu.Item>
+                  <Menu.Item style={{color: 'black'}}>Clothes</Menu.Item>
                 </Link>
                 <Menu.Item position='right'>
-                  <Button icon inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button icon color='black' style={{ marginLeft: '0.5em' }}>
                     <Icon name='cart' />
                   </Button>
                 </Menu.Item>
@@ -173,11 +155,20 @@ class MobileContainer extends Component {
           <Menu.Item as='a' active>
             Home
           </Menu.Item>
-          <Menu.Item as='a'>Work</Menu.Item>
-          <Menu.Item as='a'>Company</Menu.Item>
-          <Menu.Item as='a'>Careers</Menu.Item>
-          <Menu.Item as='a'>Log in</Menu.Item>
-          <Menu.Item as='a'>Sign Up</Menu.Item>
+          <Link to='/works'>
+            <Menu.Item as='a'>Works</Menu.Item>
+          </Link>
+          <Link to='/shoes'>
+            <Menu.Item as='a'>Shoes</Menu.Item>
+          </Link>
+          <Link to='/clothes'>
+            <Menu.Item as='a'>Clothes</Menu.Item>
+          </Link>
+          {/* <Menu.Item position='right'>
+            <Button icon inverted primary style={{ marginLeft: '0.5em' }}>
+              <Icon name='cart' />
+            </Button>
+          </Menu.Item> */}
         </Sidebar>
 
         <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -187,7 +178,7 @@ class MobileContainer extends Component {
             style={{ minHeight: 350, padding: '1em 0em' }}
             vertical
             style={{
-              backgroundImage: `url(http://altavistabali.com/images/home_mountain.jpg)`,
+              backgroundImage: `url(${Background})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover'
             }}
@@ -195,14 +186,11 @@ class MobileContainer extends Component {
             <Container>
               <Menu inverted pointing secondary size='large'>
                 <Menu.Item onClick={this.handleToggle}>
-                  <Icon name='sidebar' />
+                  <Icon bordered inverted name='sidebar' color='black' />
                 </Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted>
-                    Log in
-                  </Button>
-                  <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                    Sign Up
+                  <Button icon color='black' style={{ marginLeft: '0.5em' }}>
+                    <Icon name='cart' />
                   </Button>
                 </Menu.Item>
               </Menu>
@@ -254,7 +242,7 @@ const HomepageLayout = () => (
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src={Background} />
+            <Image bordered rounded size='large' src={Wood} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

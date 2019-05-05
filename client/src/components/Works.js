@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Header, Icon, Divider, Card, Image, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/images/bodegalogo.png'
 import axios from 'axios'
 
 export default class Works extends React.Component {
@@ -23,22 +24,26 @@ export default class Works extends React.Component {
         return (
             <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover' }}>
                 <Container>
-                    <Header style={{color: 'white'}} size='huge' icon textAlign='center'>
-                        <Icon circular size='huge' name='sitemap' />
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <Image circular size='medium' src={Logo} />
+                    </div>
+                    <Header style={{ fontFamily: 'Cuprum', fontSize: '4em', letterSpacing: '0.2em' }} icon textAlign='center'>
                         Works
-                </Header>
+                        </Header>
                     <Link to='/'>Home</Link>
                     <Divider />
                     <Grid doubling stackable>
                         <Grid.Row stretched columns={3} mobile={1}>
                             {woodworks.map(woodwork => (
-                                <Grid.Column style={{ paddingTop: '1.5em' }}>
+                                <Grid.Column key={woodwork.id} style={{ paddingTop: '1.5em' }}>
                                     <Card raised>
                                         <Image src={`https://robohash.org/${word}?set=set2`} />
                                         <Card.Content>
-                                            <Card.Header>
-                                                {woodwork.name}
-                                            </Card.Header>
+                                            <Link to={`/works/${woodwork.id}`}>
+                                                <Card.Header>
+                                                    {woodwork.name}
+                                                </Card.Header>
+                                            </Link>
                                             <Card.Meta>
                                                 ${woodwork.price}
                                             </Card.Meta>

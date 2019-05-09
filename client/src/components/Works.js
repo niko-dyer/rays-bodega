@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header, Icon, Divider, Card, Image, Grid } from 'semantic-ui-react'
+import { Container, Header, Menu, Divider, Card, Image, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/bodegalogo.png'
 import axios from 'axios'
@@ -22,15 +22,35 @@ export default class Works extends React.Component {
         const { woodworks } = this.state
         const word = 'hello'
         return (
-            <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover' }}>
+            <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover'}}>
+                <Menu pointing inverted>
+                    <Link to='/'>
+                        <Menu.Item>Home</Menu.Item>
+                    </Link>
+                    <Link to='/works'>
+                        <Menu.Item active>Works</Menu.Item>
+                    </Link>
+                    <Link to='/shoes'>
+                        <Menu.Item>Shoes</Menu.Item>
+                    </Link>
+                    <Link to='/clothes'>
+                        <Menu.Item>Clothes</Menu.Item>
+                    </Link>
+                    <Menu.Menu position='right'>
+                        <Menu.Item>
+                            <Icon name='cart' />
+                        </Menu.Item>
+                    </Menu.Menu>
+                </Menu>
                 <Container>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Image circular size='medium' src={Logo} />
+                        <Link to='/'>
+                            <Image circular size='medium' src={Logo} />
+                        </Link>
                     </div>
                     <Header style={{ fontFamily: 'Cuprum', fontSize: '4em', letterSpacing: '0.2em' }} icon textAlign='center'>
                         Works
                         </Header>
-                    <Link to='/'>Home</Link>
                     <Divider />
                     <Grid doubling stackable>
                         <Grid.Row stretched columns={3} mobile={1}>

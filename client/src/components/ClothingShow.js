@@ -7,45 +7,45 @@ import Pulse from '../assets/animations/Animations'
 
 export default class WorkShow extends React.Component {
     state = {
-        work: {}
+        clothing: {}
     }
 
     componentDidMount() {
         const { id } = this.props.match.params
         axios
-            .get(`/api/woodworks/${id}`)
+            .get(`/api/clothings/${id}`)
             .then(res => {
-                this.setState({ work: res.data })
+                this.setState({ clothing: res.data })
             })
     }
 
     render() {
-        const { work } = this.state
+        const { clothing } = this.state
         const square = { width: 175, height: 175 }
         return (
             <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover' }}>
                 <Container>
                     <Segment>
-                        <Link to='/works'>
+                        <Link to='/clothes'>
                             <Button compact attached='left' icon>
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
-                        <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{work.name}</Header>
+                        <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{clothing.name}</Header>
                         <Card style={{ float: 'right' }} raised>
                             <Card.Content>
                                 <Card.Description>
-                                    {work.description}
+                                    {clothing.description}
                                 </Card.Description>
                             </Card.Content>
                             <Card.Content extra>
-                                <Card.Meta>{work.size}</Card.Meta>
+                                <Card.Meta>{clothing.size}</Card.Meta>
                             </Card.Content>
                         </Card>
                         <Segment as={Seg} circular inverted style={square}>
                             <Header as='h2' inverted>
                                 Add To Cart
-                            <Header.Subheader>${work.price}</Header.Subheader>
+                            <Header.Subheader>${clothing.price}</Header.Subheader>
                             </Header>
                         </Segment>
                         <Image centered size='large' src='https://robohash.org/word?set=set2' />

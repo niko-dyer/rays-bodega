@@ -9,14 +9,14 @@
     Shoe.create(
         name: Faker::Beer.name,
         size: Faker::Beer.alcohol,
-        price: Faker::PhoneNumber.area_code,
+        price: Faker::Commerce.price,
         description: Faker::ChuckNorris.fact,
         material: Faker::Construction.material
     )
-    Cloth.create(
+    Clothing.create(
         name: Faker::Name.name,
         size: Faker::Superhero.power,
-        price: Faker::PhoneNumber.area_code,
+        price: Faker::Commerce.price,
         description: Faker::TvShows::RickAndMorty.quote,
         material: Faker::Creature::Dog.breed
     )

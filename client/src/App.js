@@ -5,6 +5,8 @@ import Works from './components/Works'
 import WorkShow from './components/WorkShow'
 import Shoes from './components/Shoes'
 import Clothes from './components/Clothes'
+import ShoeShow from './components/ShoeShow'
+import ClothingShow from './components/ClothingShow'
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
       <Route exact path='/works' component={Works} />
       <Route exact path='/works/:id' component={WorkShow} />
       <Route exact path='/shoes' component={Shoes} />
+      <Route exact path='/shoes/:id' component={ShoeShow} />
       <Route exact path='/clothes' component={Clothes} />
+      <Route exact path='/clothes/:id' component={ClothingShow} />
     </Switch>
     </div>
   );

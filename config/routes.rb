@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
     resources :shoes
 
-    resources :cloths
+    resources :clothings
   end
 end

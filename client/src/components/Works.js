@@ -22,7 +22,7 @@ export default class Works extends React.Component {
         const { woodworks } = this.state
         const word = 'hello'
         return (
-            <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover'}}>
+            <div style={{ backgroundImage: "linear-gradient(to bottom right, WhiteSmoke, BurlyWood)" }}>
                 <Menu pointing inverted>
                     <Link to='/'>
                         <Menu.Item>Home</Menu.Item>

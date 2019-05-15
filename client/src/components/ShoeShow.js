@@ -23,7 +23,7 @@ export default class WorkShow extends React.Component {
         const { shoe } = this.state
         const square = { width: 175, height: 175 }
         return (
-            <div style={{ backgroundImage: 'url(http://baiseautun.com/wp-content/uploads/2018/10/wood-floor-pattern-simple-home-designs-luxurious-and-stone-patterns-for-nclex-800x425.jpg)', backgroundSize: 'cover' }}>
+            <div style={{ backgroundImage: 'linear-gradient(to bottom right, BurlyWood, LightCyan)' }}>
                 <Container>
                     <Segment>
                         <Link to='/shoes'>

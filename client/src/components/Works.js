@@ -23,7 +23,7 @@ export default class Works extends React.Component {
         const word = 'hello'
         return (
             <div style={{ backgroundImage: "linear-gradient(to bottom right, WhiteSmoke, BurlyWood)" }}>
-                <Menu pointing inverted>
+                <Menu fixed='top' pointing inverted>
                     <Link to='/'>
                         <Menu.Item>Home</Menu.Item>
                     </Link>
@@ -42,6 +42,8 @@ export default class Works extends React.Component {
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>
+                <Divider hidden />
+                <Divider hidden />
                 <Container>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Link to='/'>

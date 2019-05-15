@@ -16,7 +16,7 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import Background from '../assets/images/BackgroundBodega.jpg'
+import Background from '../assets/images/SunsetBackground.jpg'
 import Wood from '../assets/images/background.jpg'
 import Logo from '../assets/images/bodegalogowhite.png'
 
@@ -39,8 +39,8 @@ const HomepageHeading = ({ mobile }) => (
       <Image size='large' src={Logo} />
     </div>
     <Link to='/works'>
-      <Button animated inverted size='huge'>
-        <Button.Content visible>Get Started</Button.Content>
+      <Button animated color='black' inverted size='huge'>
+        <Button.Content visible>Woodworks</Button.Content>
         <Button.Content hidden><Icon name='right arrow' /></Button.Content>
       </Button>
     </Link>
@@ -227,18 +227,18 @@ const HomepageLayout = () => (
         <Grid.Row>
           <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Companies and Companions
+              Woodworking like you've never seen
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              We can give your company superpowers to do things that they never thought possible.
-              Let us delight your customers and empower your needs... through pure data analytics.
+              I create stunning and unique woodworking that is perfect for home decor 
+              or office space.
             </p>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Make Bananas That Can Dance
+              Shocking the competition
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-              bioengineered.
+              Yes that's right, you thought it was the stuff of dreams, but even wood can be
+              electrocuted. 
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
@@ -247,7 +247,9 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Link to='/works'>
+              <Button size='huge'>Check Them Out</Button>
+            </Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>

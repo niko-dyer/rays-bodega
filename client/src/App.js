@@ -7,6 +7,8 @@ import Shoes from './components/Shoes'
 import Clothes from './components/Clothes'
 import ShoeShow from './components/ShoeShow'
 import ClothingShow from './components/ClothingShow'
+import Login from './components/Login'
+import NoMatch from './components/NoMatch'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <Route exact path='/shoes/:id' component={ShoeShow} />
       <Route exact path='/clothes' component={Clothes} />
       <Route exact path='/clothes/:id' component={ClothingShow} />
+      <Route exact path='/login' component={Login} />
+      <Route component={NoMatch} />
     </Switch>
     </div>
   );

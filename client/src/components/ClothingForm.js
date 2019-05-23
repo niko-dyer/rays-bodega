@@ -7,9 +7,12 @@ export default class ClothingForm extends React.Component {
     defaultValues = { name: '', price: 0, description: '', material: '', size: '' }
 
     componentDidMount() {
-        const { name, price, description, material, size } = this.props
-        if (this.props.id)
-            this.setState({ name: name, price: price, description: description, material: material, size: size })
+        const { id } = this.props.match.params
+        if (id)
+            axios.get(`/api/clothings/${id}`)
+            .then( res => {
+                this.setState({ name: res.data.name, price: res.data.price, description: res.data.description, material: res.data.material, size: res.data.size })
+            })
     }
 
     handleChange = (e) => {
@@ -19,12 +22,12 @@ export default class ClothingForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { id, updateClothing } = this.props
+        const { id } = this.props.match.params
         const clothing = this.state
         if (id) 
             axios.put(`/api/clothings/${id}`, clothing)
             .then( res => {
-                updateClothing(res.data)
+                this.props.history.push(`/clothes/${id}`)
             })
         else
             axios.post('/api/clothings', clothing )
@@ -38,7 +41,7 @@ export default class ClothingForm extends React.Component {
         return (
             <div>
                 {
-                    this.props.id ?
+                    this.props.match.params.id ?
                         <Header as='h1'>Edit Clothing</Header>
                     :
                         <Header as='h1'>New Clothing</Header>

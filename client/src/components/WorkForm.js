@@ -7,9 +7,12 @@ export default class WorkForm extends React.Component {
     defaultValues = { name: '', price: 0, description: '', wood_type: '', size: '' }
 
     componentDidMount() {
-        const { name, price, description, wood_type, size } = this.props
-        if (this.props.id)
-            this.setState({ name: name, price: price, description: description, wood_type: wood_type, size: size })
+        const { match: { params: { id } } } = this.props
+        if (id)
+            axios.get(`/api/woodworks/${id}`)
+            .then( res => {
+                this.setState({ name: res.data.name, price: res.data.price, description: res.data.description, wood_type: res.data.wood_type, size: res.data.size })
+            })
     }
 
     handleChange = (e) => {
@@ -19,12 +22,12 @@ export default class WorkForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { id, updateWork } = this.props
+        const { match: { params: { id } } } = this.props
         const work = this.state
         if (id) 
             axios.put(`/api/woodworks/${id}`, work)
             .then( res => {
-                updateWork(res.data)
+                this.props.history.push(`/works/${id}`)
             })
         else
             axios.post('/api/woodworks', work )

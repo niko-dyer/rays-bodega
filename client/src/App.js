@@ -24,12 +24,15 @@ function App() {
           <Route exact path='/works' component={Works} />
           <ProtectedRoute exact path='/works/new' component={WorkForm} />
           <Route exact path='/works/:id' component={WorkShow} />
+          <ProtectedRoute exact path='/works/:id/edit' component={WorkForm} />
           <Route exact path='/shoes' component={Shoes} />
           <ProtectedRoute exact path='/shoes/new' component={ShoeForm} />
           <Route exact path='/shoes/:id' component={ShoeShow} />
+          <ProtectedRoute exact path='/shoes/:id/edit' component={ShoeForm} />
           <Route exact path='/clothes' component={Clothes} />
           <ProtectedRoute exact path='/clothes/new' component={ClothingForm} />
           <Route exact path='/clothes/:id' component={ClothingShow} />
+          <ProtectedRoute exact path='/clothes/:id/edit' component={ClothingForm} />
           <Route exact path='/login' component={Login} />
           <Route component={NoMatch} />
         </Switch>

@@ -41,9 +41,17 @@ class ClothingShow extends React.Component {
                             </Button>
                         </Link>
                         {  this.props.auth.authenticated === true ?
+                            <Button.Group>
                                 <Button onClick={() => this.deleteClothing(clothing.id)} icon color='red'>
                                     <Icon name='trash' />
                                 </Button>
+                                <Button.Or />
+                                <Link to={`/clothes/${clothing.id}/edit`}>
+                                    <Button icon color='blue'>
+                                        <Icon name='pencil' />
+                                    </Button>
+                                </Link>
+                            </Button.Group>
                             :
                                 null
                         }

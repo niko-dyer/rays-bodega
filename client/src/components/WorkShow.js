@@ -21,9 +21,9 @@ class WorkShow extends React.Component {
     }
 
     deleteWork = (id) => {
-        axios 
+        axios
             .delete(`/api/woodworks/${id}`)
-            .then( res => {
+            .then(res => {
                 this.props.history.push('/works')
             })
     }
@@ -40,10 +40,17 @@ class WorkShow extends React.Component {
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
-                        { this.props.auth.authenticated === true ? 
-                            <Button onClick={() => this.deleteWork(work.id)} icon color='red'>
-                                <Icon name='trash' />
-                            </Button>
+                        {this.props.auth.authenticated === true ?
+                            <Button.Group>
+                                <Button onClick={() => this.deleteWork(work.id)} icon color='red'>
+                                    <Icon name='trash' />
+                                </Button>
+                                <Link to={`/works/${work.id}/edit`}>
+                                    <Button icon color='blue'>
+                                        <Icon name='pencil' />
+                                    </Button>
+                                </Link>
+                            </Button.Group>
                             :
                             null
                         }
@@ -74,8 +81,8 @@ class WorkShow extends React.Component {
 
 const ConnectedWorkShow = (props) => (
     <AuthConsumer>
-        { auth => 
-            <WorkShow { ...props } auth={auth} />
+        {auth =>
+            <WorkShow {...props} auth={auth} />
         }
     </AuthConsumer>
 )

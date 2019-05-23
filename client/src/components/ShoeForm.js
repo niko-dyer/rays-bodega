@@ -7,9 +7,12 @@ export default class ShoeForm extends React.Component {
     defaultValues = { name: '', price: 0, description: '', material: '', size: '' }
 
     componentDidMount() {
-        const { name, price, description, material, size } = this.props
-        if (this.props.id)
-            this.setState({ name: name, price: price, description: description, material: material, size: size })
+        const { match: { params: { id } } } = this.props
+        if (id)
+            axios.get(`/api/shoes/${id}`)
+            .then( res => {
+                this.setState({ name: res.data.name, price: res.data.price, description: res.data.description, material: res.data.material, size: res.data.size })
+            })
     }
 
     handleChange = (e) => {
@@ -19,12 +22,12 @@ export default class ShoeForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { id, updateShoe } = this.props
+        const { id } = this.props.match.params
         const shoe = this.state
         if (id) 
             axios.put(`/api/shoes/${id}`, shoe)
             .then( res => {
-                updateShoe(res.data)
+                this.props.history.push('/shoes')
             })
         else
             axios.post('/api/shoes', shoe )

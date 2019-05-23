@@ -23,7 +23,7 @@ class ShoeShow extends React.Component {
     deleteShoe = (id) => {
         axios
             .delete(`/api/shoes/${id}`)
-            .then( res => {
+            .then(res => {
                 this.props.history.push('/shoes')
             })
     }
@@ -40,12 +40,20 @@ class ShoeShow extends React.Component {
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
-                        { this.props.auth.authenticated === true ?
+                        {this.props.auth.authenticated === true ?
+                            <Button.Group>
                                 <Button onClick={() => this.deleteShoe(shoe.id)} icon color='red'>
                                     <Icon name='trash' />
                                 </Button>
+                                <Button.Or />
+                                <Link to={`/shoes/${shoe.id}/edit`}>
+                                    <Button color='blue' icon>
+                                        <Icon name='pencil' />
+                                    </Button>
+                                </Link>
+                            </Button.Group>
                             :
-                                null
+                            null
                         }
                         <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{shoe.name}</Header>
                         <Card style={{ float: 'right' }} raised>
@@ -78,8 +86,8 @@ const Seg = styled(Segment)`
 
 const ConnectedShoeShow = (props) => (
     <AuthConsumer>
-        { auth => 
-            <ShoeShow { ...props } auth={auth} />
+        {auth =>
+            <ShoeShow {...props} auth={auth} />
         }
     </AuthConsumer>
 )

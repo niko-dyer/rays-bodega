@@ -4,8 +4,9 @@ import { Image, Segment, Container, Header, Card, Button, Icon } from 'semantic-
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Pulse from '../assets/animations/Animations'
+import { AuthConsumer } from '../providers/AuthProvider'
 
-export default class WorkShow extends React.Component {
+class ClothingShow extends React.Component {
     state = {
         clothing: {}
     }
@@ -16,6 +17,14 @@ export default class WorkShow extends React.Component {
             .get(`/api/clothings/${id}`)
             .then(res => {
                 this.setState({ clothing: res.data })
+            })
+    }
+
+    deleteClothing = (id) => {
+        axios 
+            .delete(`/api/clothings/${id}`)
+            .then( res => {
+                this.props.history.push('/clothes')
             })
     }
 
@@ -31,6 +40,13 @@ export default class WorkShow extends React.Component {
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
+                        {  this.props.auth.authenticated === true ?
+                                <Button onClick={() => this.deleteClothing(clothing.id)} icon color='red'>
+                                    <Icon name='trash' />
+                                </Button>
+                            :
+                                null
+                        }
                         <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{clothing.name}</Header>
                         <Card style={{ float: 'right' }} raised>
                             <Card.Content>
@@ -59,3 +75,13 @@ export default class WorkShow extends React.Component {
 const Seg = styled(Segment)`
     animation: ${Pulse} linear 2s infinite
 `
+
+const ConnectedClothingShow = (props) => (
+    <AuthConsumer>
+        { auth => 
+            <ClothingShow { ...props } auth={auth} />
+        }
+    </AuthConsumer>
+)
+
+export default ConnectedClothingShow

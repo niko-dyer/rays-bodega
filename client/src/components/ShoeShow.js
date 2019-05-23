@@ -4,8 +4,9 @@ import { Image, Segment, Container, Header, Card, Button, Icon } from 'semantic-
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Pulse from '../assets/animations/Animations'
+import { AuthConsumer } from '../providers/AuthProvider'
 
-export default class WorkShow extends React.Component {
+class ShoeShow extends React.Component {
     state = {
         shoe: {}
     }
@@ -16,6 +17,14 @@ export default class WorkShow extends React.Component {
             .get(`/api/shoes/${id}`)
             .then(res => {
                 this.setState({ shoe: res.data })
+            })
+    }
+
+    deleteShoe = (id) => {
+        axios
+            .delete(`/api/shoes/${id}`)
+            .then( res => {
+                this.props.history.push('/shoes')
             })
     }
 
@@ -31,6 +40,13 @@ export default class WorkShow extends React.Component {
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
+                        { this.props.auth.authenticated === true ?
+                                <Button onClick={() => this.deleteShoe(shoe.id)} icon color='red'>
+                                    <Icon name='trash' />
+                                </Button>
+                            :
+                                null
+                        }
                         <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{shoe.name}</Header>
                         <Card style={{ float: 'right' }} raised>
                             <Card.Content>
@@ -59,3 +75,13 @@ export default class WorkShow extends React.Component {
 const Seg = styled(Segment)`
     animation: ${Pulse} linear 2s infinite
 `
+
+const ConnectedShoeShow = (props) => (
+    <AuthConsumer>
+        { auth => 
+            <ShoeShow { ...props } auth={auth} />
+        }
+    </AuthConsumer>
+)
+
+export default ConnectedShoeShow

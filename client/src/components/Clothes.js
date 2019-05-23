@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container, Header, Menu, Divider, Card, Image, Grid, Icon } from 'semantic-ui-react'
+import { Container, Header, Menu, Divider, Card, Image, Grid, Icon, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/bodegalogo.png'
 import axios from 'axios'
+import { AuthConsumer } from '../providers/AuthProvider'
 
-export default class Works extends React.Component {
+class Clothes extends React.Component {
     state = {
         clothes: []
     }
@@ -22,7 +23,7 @@ export default class Works extends React.Component {
         const { clothes } = this.state
         const word = 'hello'
         return (
-            <div style={{ backgroundImage: 'linear-gradient(to bottom right, LightCyan, Maroon)'}}>
+            <div style={{ backgroundImage: 'linear-gradient(to bottom right, LightCyan, Maroon)' }}>
                 <Menu fixed='top' pointing inverted>
                     <Link to='/'>
                         <Menu.Item>Home</Menu.Item>
@@ -53,6 +54,13 @@ export default class Works extends React.Component {
                     <Header style={{ fontFamily: 'Cuprum', fontSize: '4em', letterSpacing: '0.2em' }} icon textAlign='center'>
                         Clothes
                         </Header>
+                    {this.props.auth.authenticated === true ?
+                        <Link to='/clothes/new'>
+                            <Button color='green' icon>
+                                <Icon name='plus' />
+                            </Button>
+                        </Link>
+                        : null}
                     <Divider />
                     <Grid doubling stackable>
                         <Grid.Row stretched columns={3} mobile={1}>
@@ -83,3 +91,13 @@ export default class Works extends React.Component {
         )
     }
 }
+
+const ConnectedClothes = (props) => (
+    <AuthConsumer>
+        { auth => 
+            <Clothes { ...props } auth={auth} />
+        }
+    </AuthConsumer>
+)
+
+export default ConnectedClothes

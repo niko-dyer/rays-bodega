@@ -9,21 +9,31 @@ import ShoeShow from './components/ShoeShow'
 import ClothingShow from './components/ClothingShow'
 import Login from './components/Login'
 import NoMatch from './components/NoMatch'
+import FetchUser from './components/FetchUser'
+import ProtectedRoute from './components/ProtectedRoute'
+import WorkForm from './components/WorkForm'
+import ShoeForm from './components/ShoeForm'
+import ClothingForm from './components/ClothingForm'
 
 function App() {
   return (
     <div className="App">
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/works' component={Works} />
-      <Route exact path='/works/:id' component={WorkShow} />
-      <Route exact path='/shoes' component={Shoes} />
-      <Route exact path='/shoes/:id' component={ShoeShow} />
-      <Route exact path='/clothes' component={Clothes} />
-      <Route exact path='/clothes/:id' component={ClothingShow} />
-      <Route exact path='/login' component={Login} />
-      <Route component={NoMatch} />
-    </Switch>
+      <FetchUser>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/works' component={Works} />
+          <ProtectedRoute exact path='/works/new' component={WorkForm} />
+          <Route exact path='/works/:id' component={WorkShow} />
+          <Route exact path='/shoes' component={Shoes} />
+          <ProtectedRoute exact path='/shoes/new' component={ShoeForm} />
+          <Route exact path='/shoes/:id' component={ShoeShow} />
+          <Route exact path='/clothes' component={Clothes} />
+          <ProtectedRoute exact path='/clothes/new' component={ClothingForm} />
+          <Route exact path='/clothes/:id' component={ClothingShow} />
+          <Route exact path='/login' component={Login} />
+          <Route component={NoMatch} />
+        </Switch>
+      </FetchUser>
     </div>
   );
 }

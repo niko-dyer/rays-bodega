@@ -18,33 +18,40 @@ class Login extends React.Component {
 
     render() {
         const { email, password } = this.state 
+        const { auth: { handleLogout }, history } = this.props
 
         return (
             <Segment basic>
-                <Header as='h1' textAlign='center'>Login</Header>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Input 
-                        label='Email'
-                        autoFocus
-                        required
-                        name='email'
-                        value={email}
-                        placeholder='Email'
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input 
-                        label='Password'
-                        required 
-                        name='password'
-                        value={password}
-                        placeholder='Password'
-                        type='password'
-                        onChange={this.handleChange}
-                    />
-                    <Segment textAlign='center' basic>
-                        <Button primary type='submit'>Submit</Button>
-                    </Segment>
-                </Form>
+                { this.props.auth.authenticated === true ? 
+                    <Button onClick={() => handleLogout(history)}>Logout</Button>
+                  :
+                    <>
+                        <Header as='h1' textAlign='center'>Login</Header>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Input 
+                                label='Email'
+                                autoFocus
+                                required
+                                name='email'
+                                value={email}
+                                placeholder='Email'
+                                onChange={this.handleChange}
+                            />
+                            <Form.Input 
+                                label='Password'
+                                required 
+                                name='password'
+                                value={password}
+                                placeholder='Password'
+                                type='password'
+                                onChange={this.handleChange}
+                            />
+                            <Segment textAlign='center' basic>
+                                <Button primary type='submit'>Submit</Button>
+                            </Segment>
+                        </Form>
+                    </>
+                }
             </Segment>
         )
     }

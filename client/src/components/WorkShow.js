@@ -4,8 +4,9 @@ import { Image, Segment, Container, Header, Card, Button, Icon } from 'semantic-
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Pulse from '../assets/animations/Animations'
+import { AuthConsumer } from '../providers/AuthProvider'
 
-export default class WorkShow extends React.Component {
+class WorkShow extends React.Component {
     state = {
         work: {}
     }
@@ -16,6 +17,14 @@ export default class WorkShow extends React.Component {
             .get(`/api/woodworks/${id}`)
             .then(res => {
                 this.setState({ work: res.data })
+            })
+    }
+
+    deleteWork = (id) => {
+        axios 
+            .delete(`/api/woodworks/${id}`)
+            .then( res => {
+                this.props.history.push('/works')
             })
     }
 
@@ -31,6 +40,13 @@ export default class WorkShow extends React.Component {
                                 <Icon name='arrow left' />
                             </Button>
                         </Link>
+                        { this.props.auth.authenticated === true ? 
+                            <Button onClick={() => this.deleteWork(work.id)} icon color='red'>
+                                <Icon name='trash' />
+                            </Button>
+                            :
+                            null
+                        }
                         <Header style={{ letterSpacing: '.2em' }} textAlign='center'>{work.name}</Header>
                         <Card style={{ float: 'right' }} raised>
                             <Card.Content>
@@ -56,6 +72,16 @@ export default class WorkShow extends React.Component {
     }
 }
 
+const ConnectedWorkShow = (props) => (
+    <AuthConsumer>
+        { auth => 
+            <WorkShow { ...props } auth={auth} />
+        }
+    </AuthConsumer>
+)
+
 const Seg = styled(Segment)`
-    animation: ${Pulse} linear 2s infinite
+animation: ${Pulse} linear 2s infinite
 `
+
+export default ConnectedWorkShow

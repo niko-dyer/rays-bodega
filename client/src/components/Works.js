@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container, Header, Menu, Divider, Card, Image, Grid, Icon } from 'semantic-ui-react'
+import { Container, Header, Menu, Divider, Card, Image, Grid, Icon, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/bodegalogo.png'
 import axios from 'axios'
+import { AuthConsumer } from '../providers/AuthProvider'
 
-export default class Works extends React.Component {
+class Works extends React.Component {
     state = {
         woodworks: []
     }
@@ -53,6 +54,13 @@ export default class Works extends React.Component {
                     <Header style={{ fontFamily: 'Cuprum', fontSize: '4em', letterSpacing: '0.2em' }} icon textAlign='center'>
                         Works
                         </Header>
+                {this.props.auth.authenticated === true ? 
+                    <Link to='/works/new'>
+                        <Button color='green' icon>
+                            <Icon name='plus' />
+                        </Button>
+                    </Link> 
+                    : null}
                     <Divider />
                     <Grid doubling stackable>
                         <Grid.Row stretched columns={3} mobile={1}>
@@ -86,3 +94,13 @@ export default class Works extends React.Component {
         )
     }
 }
+
+const ConnectedWorks = (props) => (
+    <AuthConsumer>
+        { auth => 
+            <Works { ...props } auth={auth} />
+        }
+    </AuthConsumer>
+)
+
+export default ConnectedWorks

@@ -7,6 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
+    "devise-axios": "^1.0.24",
     "i": "^0.3.6",
     "npm": "^6.9.0",
     "random-words": "^1.1.0",
